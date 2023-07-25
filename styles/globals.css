@@ -13,20 +13,20 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus{
-    @apply border-blue-700;
+    @apply border-highlight;
 }
 
 
 h1 {
-    @apply text-blue-900 mb-2 text-xl;
+    @apply text-[#363161] mb-2 text-xl;
 }
 
 label {
-    @apply text-blue-900 mb-1;
+    @apply text-[#363161] mb-1;
 }
 
 .btn-primary {
-    @apply bg-blue-900 text-white px-4 py-1 rounded-md; 
+    @apply bg-[#d35064] text-[#f0a938] px-4 py-1 rounded-md; 
 }
 
 table.basic {
@@ -34,16 +34,16 @@ table.basic {
 }
 
 table.basic thead tr td {
-    @apply bg-blue-100
+    @apply bg-[#fffcef]
 }
 
 table.basic tr td {
-    @apply border border-blue-200 p-1;
+    @apply border border-[#f8f2d8] p-1 text-[#363161];
 }
 
 
 table.basic a {
-    @apply bg-blue-900 text-white text-sm rounded-md py-1 px-2 inline-flex gap-1 mr-1;
+    @apply bg-highlight text-primary text-sm rounded-md py-1 px-2 inline-flex gap-1 mr-1;
 }
 
 .btn-default, .btn-red {
@@ -55,7 +55,7 @@ table.basic a {
 }
 
 .btn-default {
-    @apply bg-gray-400 text-white
+    @apply bg-highlight text-primary
 }
 
 .my-actions { margin: 0 2em; }

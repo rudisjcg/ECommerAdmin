@@ -1,7 +1,10 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 export default async function handle(req, res) {
+    await mongooseConnect();
+    await isAdminRequest(req,res)
     const {method} = req;
     await mongooseConnect();
     //mongoose.connect(clientPromise.url) you are creating a new connection
