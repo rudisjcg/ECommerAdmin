@@ -13,7 +13,7 @@ export default function Products() {
   return (
     <Layout>
       <Link
-        className="bg-highlight rounded-md text-primary py-1 px-2"
+        className="btn-primary"
         href={"/products/New"}
       >
         Add new Product
