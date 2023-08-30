@@ -62,6 +62,17 @@ export default function ProductForm({
       setIsUploading(false);
       console.log(res.data);
     }
+    {/*
+      
+      const res = await axios.post("/api/upload", data);
+      setImages((oldImages) => {
+        return [...oldImages, ...res.data.links];
+      });
+      setIsUploading(false);
+      console.log(res.data);
+    
+  */}
+
   }
 
   function updateImagesOrder(images) {
@@ -87,7 +98,6 @@ export default function ProductForm({
       propertiesToFill.push(...parentCat.properties);
       catInfo = parentCat;
     }
-    console.log(propertiesToFill);
   }
 
   return (
