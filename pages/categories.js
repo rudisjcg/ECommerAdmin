@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import Spinner from "@/components/Spinner";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -9,13 +10,16 @@ export default function Categories() {
   const [parentCategory, setParentCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const [properties, setProperties] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchCategories();
   }, []);
   function fetchCategories() {
+    setIsLoading(true);
     axios.get("/api/categories").then((result) => {
       setCategories(result.data);
+      setIsLoading(false);
     });
   }
   async function saveCategory(ev) {
@@ -189,7 +193,8 @@ export default function Categories() {
           </button>
         </div>
       </form>
-      {!editedCat && (
+      {isLoading && <Spinner fullWidth={true} />}
+      {!editedCat && !isLoading && (
         <table className="basic mt-2">
           <thead>
             <tr>
