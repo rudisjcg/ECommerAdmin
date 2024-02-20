@@ -1,13 +1,20 @@
 import Layout from "@/components/Layout";
+import Spinner from "@/components/Spinner";
 import axios from "axios";
+import { set } from "mongoose";
+import { SP } from "next/dist/shared/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ClockLoader } from "react-spinners";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
+      setIsLoading(false);
     });
   }, []);
   return (
@@ -27,7 +34,14 @@ export default function Products() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {isLoading && <tr><td
+          >
+            <div className="py-4">
+            <Spinner fullWidth={true}/>
+            </div>
+              
+            </td></tr>}
+          {!isLoading && products.map((product) => (
             <tr key={product._id}>
               <td>{product.title}</td>
               <td>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Spinner from "./Spinner";
 import { ReactSortable } from "react-sortablejs";
+import { set } from "mongoose";
 
 export default function ProductForm({
   title: existingTitle,
@@ -22,11 +23,14 @@ export default function ProductForm({
   const [images, setImages] = useState(existingImages || []);
   const [isUploading, setIsUploading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [catLoading, setcatLoading] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
+    setcatLoading(true);
     axios.get("/api/categories").then((result) => {
       setCategories(result.data);
+      setcatLoading(false);
     });
   }, []);
 
@@ -90,7 +94,7 @@ export default function ProductForm({
   const propertiesToFill = [];
   if (categories.length > 0 && category) {
     let catInfo = categories.find(({ _id }) => _id === category);
-    propertiesToFill.push(...catInfo.properties);
+    propertiesToFill.push(...catInfo?.properties);
     while (catInfo?.parent?._id) {
       const parentCat = categories.find(
         ({ _id }) => _id === catInfo?.parent?._id
@@ -120,7 +124,10 @@ export default function ProductForm({
             </option>
           ))}
       </select>
-      {propertiesToFill?.length > 0 &&
+      {
+        catLoading && <Spinner />
+      }
+      {propertiesToFill?.length > 0  && !catLoading &&
         propertiesToFill.map((p) => (
           <div className="flex gap-1" key={p}>
             <div>{p.name}</div>
