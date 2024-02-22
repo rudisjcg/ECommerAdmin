@@ -16,7 +16,7 @@
     "eslint-config-next": "13.4.7",
     "mime-types": "^2.1.35",
     "mongodb": "^5.6.0",
-    "mongoose": "^7.3.1",
+    "mongoose": "^7.3.3",
     "moongose": "^1.0.0",
     "multiparty": "^4.2.3",
     "next": "13.4.7",
